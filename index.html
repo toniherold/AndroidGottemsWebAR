@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gottems WebAR</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Josefin Sans' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="navbar">
+        <img src="assets/image/logo.png" width="75">
+    </div>
+    <div id="main">
+        <div id="android">
+            <model-viewer src="assets/models/ADA.glb" poster="assets/icons/ADA.jpg" tone-mapping="neutral" shadow-intensity="1" ar camera-controls touch-action="pan-y" width="50%">
+        </div>
+        
+        <h2>ADA</h2>
+
+        <div class="slider">
+            <div class="slides">
+            <button class="slide selected" onclick="switchSrc(this, 'ADA')" style="background-image: url('assets/icons/ADA.jpg');">
+        
+            </button><button class="slide" onclick="switchSrc(this, 'AURA')" style="background-image: url('assets/icons/AURA.jpg');">
+        
+            </button><button class="slide" onclick="switchSrc(this, 'FLOW')" style="background-image: url('assets/icons/FLOW.jpg');">
+            
+            </button><button class="slide" onclick="switchSrc(this, 'FLY')" style="background-image: url('assets/icons/FLY.jpg');">
+            
+            </button><button class="slide" onclick="switchSrc(this, 'HOLY')" style="background-image: url('assets/icons/HOLY.jpg');">    
+            </button></div>
+        </div>
+          
+        <script type="module">
+            const modelViewer = document.querySelector("model-viewer");
+            
+            window.switchSrc = (element, name) => {
+                const base = "assets/models/" + name;
+                modelViewer.src = base + '.glb';
+                modelViewer.poster = "assets/icons/" + name + '.jpg';
+                
+                document.querySelector("h2").textContent = name;
+
+                const slides = document.querySelectorAll(".slide");                
+                slides.forEach((element) => {element.classList.remove("selected");});                
+                element.classList.add("selected");
+            };
+            
+            document.querySelector(".slider").addEventListener('beforexrselect', (ev) => {
+                ev.preventDefault();
+            });
+        </script>
+    </div>
+</body> 
+</html>
