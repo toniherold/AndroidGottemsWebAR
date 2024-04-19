@@ -17,7 +17,8 @@
     </div>
     <div id="main">
         <div id="android">
-            <model-viewer src="assets/models/ADA.glb" poster="assets/icons/ADA.jpg" tone-mapping="neutral" shadow-intensity="1" ar camera-controls touch-action="pan-y" width="50%">
+            <model-viewer src="assets/models/ADA.glb" poster="assets/icons/ADA.jpg" tone-mapping="neutral" shadow-intensity="1" ar camera-controls touch-action="pan-y"
+            ios-src="assets/models/ADA.usdz" xr-environment></model-viewer>
         </div>
         
         <h2>ADA</h2>
@@ -42,6 +43,7 @@
             window.switchSrc = (element, name) => {
                 const base = "assets/models/" + name;
                 modelViewer.src = base + '.glb';
+                modelViewer.setAttribute("ios-src", base + '.usdz');
                 modelViewer.poster = "assets/icons/" + name + '.jpg';
                 
                 document.querySelector("h2").textContent = name;
